@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Album
-from django.template import loader
+from django.shortcuts import render
+#from django.template import loader
 
 
 def index(request):
     all_albums = Album.objects.all()
-    template = loader.get_template('index.html')
-    context = {'all_albums':all_albums,}
-    return HttpResponse(template.render(context , request))
+    context = {'all_albums':all_albums}
+    return render(request , 'index.html' , context)
 
 
 def details(requset , album_id):
